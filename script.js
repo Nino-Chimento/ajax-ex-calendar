@@ -1,18 +1,19 @@
 $(document).ready(function () {
-  var gennaio = moment("2018-01-01");
-  var giorniGennaio = moment(2018-01).daysInMonth();
-  giorniDelMese(giorniGennaio,gennaio)
-  // for (var i = 0; i < giorniGennaio; i++) {
-  //   var source = $("#entry-template").html();
-  //   var template = Handlebars.compile(source);
-  //   var context = {
-  //     giorno: parseInt(gennaio.format("D")) + i,
-  //     mese: gennaio.format("MMMM"),
-  //     data : "2018-01" + "-" + addZero((parseInt(gennaio.format("D")) + i)) ,
-  //   };
-  //   var html = template(context);
-  //   $(".wrap").append(html);
-  // }
+  var mese = 1;
+  var giorniMese = moment(2018-0+mese).daysInMonth();
+   var nomeMese = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
+  for (var i = 0; i < giorniMese; i++) {
+    var source = $("#entry-template").html();
+    var template = Handlebars.compile(source);
+    var context = {
+      giorno: i+1,
+      mese: nomeMese[mese-1],
+      
+    };
+    var html = template(context);
+    $(".wrap").append(html);
+  }
+
   $.ajax({
     url : "https://flynn.boolean.careers/exercises/api/holidays?year=2018&month=0",
     method : "GET",
