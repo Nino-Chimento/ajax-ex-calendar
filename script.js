@@ -6,9 +6,9 @@ $(document).ready(function () {
     var source = $("#entry-template").html();
     var template = Handlebars.compile(source);
     var context = {
-      giorno: i+1,
+      giorno: addZero(i+1),
       mese: nomeMese[mese-1],
-      
+      data : "2018-"+addZero(mese)+"-"+addZero(i+1),
     };
     var html = template(context);
     $(".wrap").append(html);
