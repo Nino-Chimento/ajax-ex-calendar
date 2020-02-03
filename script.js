@@ -14,7 +14,7 @@ $(document).ready(function () {
   });
   $(".precedente").click(function () {
     mese--;
-    if (mese > 1) {
+    if (mese < 1) {
       alert("calendario 2017 non disponibile")
     }
     else {
