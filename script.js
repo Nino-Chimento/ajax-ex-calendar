@@ -12,6 +12,23 @@ $(document).ready(function () {
     var html = template(context);
     $("ul").append(html);
   }
+  $.ajax({
+    url : "https://flynn.boolean.careers/exercises/api/holidays?year=2018&month=0",
+    method : "GET",
+    success : function (data) {
+      console.log(data.response[1].date);
+      for (var i = 0; i < data.response.length; i++) {
+        $("ul li").each(function () {
+          if ($(this).attr("data") == data.response[i].date) {
+            console.log("Ni");
+          };
+        })
+      }
+    },
+    erorr : function (richiesta,stato,errore) {
+      alert("errore"+errore)
+    }
+  });
 });
 function addZero(num) {
   if (num < 10) {
