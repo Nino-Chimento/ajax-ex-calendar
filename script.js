@@ -4,7 +4,8 @@ $(document).ready(function () {
   $(".successivo").click(function () {
     mese++;
     if (mese > 12) {
-      alert("il calendario 2019 non e'pronto")
+      alert("il calendario 2019 non e'pronto");
+      mese--;
     }
     else {
       $(".wrap").html(" ");
@@ -16,37 +17,16 @@ $(document).ready(function () {
     mese--;
     if (mese < 1) {
       alert("calendario 2017 non disponibile")
+      mese++
     }
     else {
       $(".wrap").html(" ");
       giorniDelMese(mese);
-
+      feste(mese);
     }
   });
   console.log(mese);
-  $.ajax({
-    url : "https://flynn.boolean.careers/exercises/api/holidays?year=2018&month="+(mese-1),
-    method : "GET",
-    success : function (data) {
-      for (var i = 0; i < data.response.length; i++) {
-        $(".wrap div").each(function () {
-          if ($(this).attr("data") == data.response[i].date) {
-            $(this).addClass("red");
-            var source = $("#entry-template").html();
-            var template = Handlebars.compile(source);
-            var context = {
-              name : data.response[i].name,
-            }
-            var html = template(context);
-            $(this).append(html)
-          };
-        })
-      }
-    },
-    erorr : function (richiesta,stato,errore) {
-      alert("errore"+errore)
-    }
-  });
+  feste(mese);
 });
 function feste(mese) {
   $.ajax({
@@ -87,6 +67,7 @@ function giorniDelMese(mese) {
     };
     var html = template(context);
     $(".wrap").append(html);
+    $("h1").text(nomeMese[mese-1]);
   }
 }
 // aggiungo zero
