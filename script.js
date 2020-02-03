@@ -56,18 +56,17 @@ function feste(mese) {
 // creo i giorni
 function giorniDelMese(mese) {
   var giorniMese = moment(2018-0+mese).daysInMonth();
-   var nomeMese = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
   for (var i = 0; i < giorniMese; i++) {
     var source = $("#entry-template").html();
     var template = Handlebars.compile(source);
     var context = {
       giorno: addZero(i+1),
-      mese: nomeMese[mese-1],
+      mese: moment().month(mese-1).format("MMM"),
       data : "2018-"+addZero(mese)+"-"+addZero(i+1),
     };
     var html = template(context);
     $(".wrap").append(html);
-    $("h1").text(nomeMese[mese-1]);
+    $("h1").text(moment().month(mese-1).format("MMMM"));
   }
 }
 // aggiungo zero
