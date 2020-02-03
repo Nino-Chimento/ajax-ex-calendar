@@ -6,9 +6,10 @@ $(document).ready(function () {
     var template = Handlebars.compile(source);
     var context = {
       giorno: parseInt(gennaio.format("D")) + i,
-      mese: gennaio.format("MMMMM")
+      mese: gennaio.format("MMMM")
       };
     var html = template(context);
     $("ul").append(html);
   }
+  console.log(gennaio.format("MMMMM"));
 });
