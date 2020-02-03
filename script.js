@@ -20,7 +20,7 @@ $(document).ready(function () {
       for (var i = 0; i < data.response.length; i++) {
         $("ul li").each(function () {
           if ($(this).attr("data") == data.response[i].date) {
-            console.log("Ni");
+            $(this).addClass("red")
           };
         })
       }
