@@ -10,14 +10,14 @@ $(document).ready(function () {
       data : "2018-01" + "-" + addZero((parseInt(gennaio.format("D")) + i)) ,
     };
     var html = template(context);
-    $("ul").append(html);
+    $(".wrap").append(html);
   }
   $.ajax({
     url : "https://flynn.boolean.careers/exercises/api/holidays?year=2018&month=0",
     method : "GET",
     success : function (data) {
       for (var i = 0; i < data.response.length; i++) {
-        $("ul li").each(function () {
+        $(".wrap div").each(function () {
           if ($(this).attr("data") == data.response[i].date) {
             $(this).addClass("red");
             var source = $("#entry-template").html();
