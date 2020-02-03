@@ -1,18 +1,7 @@
 $(document).ready(function () {
   var mese = 1;
-  var giorniMese = moment(2018-0+mese).daysInMonth();
-   var nomeMese = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
-  for (var i = 0; i < giorniMese; i++) {
-    var source = $("#entry-template").html();
-    var template = Handlebars.compile(source);
-    var context = {
-      giorno: addZero(i+1),
-      mese: nomeMese[mese-1],
-      data : "2018-"+addZero(mese)+"-"+addZero(i+1),
-    };
-    var html = template(context);
-    $(".wrap").append(html);
-  }
+  giorniDelMese(mese)
+
 
   $.ajax({
     url : "https://flynn.boolean.careers/exercises/api/holidays?year=2018&month=0",
@@ -38,14 +27,16 @@ $(document).ready(function () {
     }
   });
 });
-function giorniDelMese(numGiorni,mese) {
-  for (var i = 0; i < numGiorni; i++) {
+function giorniDelMese(mese) {
+  var giorniMese = moment(2018-0+mese).daysInMonth();
+   var nomeMese = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
+  for (var i = 0; i < giorniMese; i++) {
     var source = $("#entry-template").html();
     var template = Handlebars.compile(source);
     var context = {
-      giorno: parseInt(mese.format("D")) + i,
-      mese: mese.format("MMMM"),
-      data : mese.format("YYYY"+"-"+"MM") + "-" + addZero((parseInt(mese.format("D")) + i)) ,
+      giorno: addZero(i+1),
+      mese: nomeMese[mese-1],
+      data : "2018-"+addZero(mese)+"-"+addZero(i+1),
     };
     var html = template(context);
     $(".wrap").append(html);
