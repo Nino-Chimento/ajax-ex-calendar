@@ -16,11 +16,17 @@ $(document).ready(function () {
     url : "https://flynn.boolean.careers/exercises/api/holidays?year=2018&month=0",
     method : "GET",
     success : function (data) {
-      console.log(data.response[1].date);
       for (var i = 0; i < data.response.length; i++) {
         $("ul li").each(function () {
           if ($(this).attr("data") == data.response[i].date) {
-            $(this).addClass("red")
+            $(this).addClass("red");
+            var source = $("#entry-template").html();
+            var template = Handlebars.compile(source);
+            var context = {
+              name : data.response[i].name,
+            }
+            var html = template(context);
+            $(this).append(html)
           };
         })
       }
