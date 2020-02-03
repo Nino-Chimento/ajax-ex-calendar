@@ -1,13 +1,29 @@
 $(document).ready(function () {
   var mese = 1;
   giorniDelMese(mese)
-  $(".Successivo").click(function () {
+  $(".successivo").click(function () {
     mese++;
-    console.log(mese);
-    $(".wrap").html(" ")
-    giorniDelMese(mese)
+    if (mese > 12) {
+      alert("il calendario 2019 non e'pronto")
+    }
+    else {
+      $(".wrap").html(" ");
+      giorniDelMese(mese);
+      feste(mese);
+    }
   });
+  $(".precedente").click(function () {
+    mese--;
+    if (mese > 1) {
+      alert("calendario 2017 non disponibile")
+    }
+    else {
+      $(".wrap").html(" ");
+      giorniDelMese(mese);
 
+    }
+  });
+  console.log(mese);
   $.ajax({
     url : "https://flynn.boolean.careers/exercises/api/holidays?year=2018&month="+(mese-1),
     method : "GET",
@@ -32,7 +48,7 @@ $(document).ready(function () {
     }
   });
 });
-function feste() {
+function feste(mese) {
   $.ajax({
     url : "https://flynn.boolean.careers/exercises/api/holidays?year=2018&month="+(mese-1),
     method : "GET",
