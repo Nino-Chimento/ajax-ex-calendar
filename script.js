@@ -1,10 +1,15 @@
 $(document).ready(function () {
   var mese = 1;
   giorniDelMese(mese)
-
+  $(".Successivo").click(function () {
+    mese++;
+    console.log(mese);
+    $(".wrap").html(" ")
+    giorniDelMese(mese)
+  });
 
   $.ajax({
-    url : "https://flynn.boolean.careers/exercises/api/holidays?year=2018&month=0",
+    url : "https://flynn.boolean.careers/exercises/api/holidays?year=2018&month="+(mese-1),
     method : "GET",
     success : function (data) {
       for (var i = 0; i < data.response.length; i++) {
@@ -27,6 +32,32 @@ $(document).ready(function () {
     }
   });
 });
+function feste() {
+  $.ajax({
+    url : "https://flynn.boolean.careers/exercises/api/holidays?year=2018&month="+(mese-1),
+    method : "GET",
+    success : function (data) {
+      for (var i = 0; i < data.response.length; i++) {
+        $(".wrap div").each(function () {
+          if ($(this).attr("data") == data.response[i].date) {
+            $(this).addClass("red");
+            var source = $("#entry-template").html();
+            var template = Handlebars.compile(source);
+            var context = {
+              name : data.response[i].name,
+            }
+            var html = template(context);
+            $(this).append(html)
+          };
+        })
+      }
+    },
+    erorr : function (richiesta,stato,errore) {
+      alert("errore"+errore)
+    }
+  });
+}
+// creo i giorni
 function giorniDelMese(mese) {
   var giorniMese = moment(2018-0+mese).daysInMonth();
    var nomeMese = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
