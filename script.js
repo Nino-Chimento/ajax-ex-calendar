@@ -11,5 +11,4 @@ $(document).ready(function () {
     var html = template(context);
     $("ul").append(html);
   }
-  console.log(gennaio.format("MMMMM"));
 });

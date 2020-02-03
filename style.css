@@ -6,3 +6,10 @@
 ul {
   list-style: none
 }
+.wrap {
+  width: 60%;
+  margin: auto;
+}
+li {
+  padding: 5px;
+}
