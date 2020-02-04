@@ -1,5 +1,8 @@
 $(document).ready(function () {
-  var start = moment(2018-01-01);
+  moment.updateLocale('it', {
+    months : ["Gennaio","febbraio","Marzo","Aprile","Maggio","giugno","luglio","aagosto","settembre","ottobre","novembre","dicembre"],
+    weekdays : ["lunedi","martedi","mercoledi","giovedi","venerdi","sabato","domenica"]
+});
   var mese = 1;
   giorniDelMese(mese)
   $(".successivo").click(function () {
@@ -58,12 +61,12 @@ function feste(mese) {
 function giorniDelMese(mese) {
   var giorniMese = moment(2018-0+mese).daysInMonth();
   for (var i = 0; i < giorniMese; i++) {
-    console.log(moment().date.weekdays);
+    console.log(moment().day(i));
     var source = $("#entry-template").html();
     var template = Handlebars.compile(source);
     var context = {
       giorno: addZero(i+1),
-      mese: moment().month(mese-1).format("MMM"),
+      mese: moment().month(mese-1).format("MMMM"),
       data : "2018-"+addZero(mese)+"-"+addZero(i+1),
     };
     var html = template(context);
