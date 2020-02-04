@@ -3,6 +3,9 @@ $(document).ready(function () {
     months : ["Gennaio","febbraio","Marzo","Aprile","Maggio","giugno","luglio","aagosto","settembre","ottobre","novembre","dicembre"],
     weekdays : ["lunedi","martedi","mercoledi","giovedi","venerdi","sabato","domenica"]
 });
+  $("select").change(function () {
+    var mese = $("select").val();
+  });
   var mese = 1;
   giorniDelMese(mese)
   $(".successivo").click(function () {

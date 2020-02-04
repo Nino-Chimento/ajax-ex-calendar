@@ -1,4 +1,11 @@
 $(document).ready(function () {
+  $("select").change(function () {
+    var mese = $("select").val();
+    $(".wrap").html(" ");
+    giorniDelMese(mese);
+    feste(mese);
+
+  });
   festivita = [
     {
       name : " Mio Compleanno",
@@ -86,7 +93,8 @@ function feste(mese) {
   }
   // creo i giorni
   function giorniDelMese(mese) {
-    var giorniMese = moment("2018-0"+mese).daysInMonth();
+    moment.locale("it")
+    var giorniMese = moment("2018-"+mese).daysInMonth();
     for (var i = 0; i < giorniMese; i++) {
       var source = $("#entry-template").html();
       var template = Handlebars.compile(source);
