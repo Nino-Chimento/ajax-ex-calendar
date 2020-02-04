@@ -14,8 +14,8 @@ $(document).ready(function () {
 
     }
   ]
-  console.log(festivita.length);
   var mese = 1;
+
   giorniDelMese(mese)
   $(".successivo").click(function () {
     mese++;
@@ -86,7 +86,7 @@ function feste(mese) {
   }
   // creo i giorni
   function giorniDelMese(mese) {
-    var giorniMese = moment(2018-0+mese).daysInMonth();
+    var giorniMese = moment("2018-0"+mese).daysInMonth();
     for (var i = 0; i < giorniMese; i++) {
       var source = $("#entry-template").html();
       var template = Handlebars.compile(source);
