@@ -65,6 +65,7 @@ function giorniDelMese(mese) {
       giorno: addZero(i+1),
       mese: moment().month(mese-1).format("MMM"),
       data : "2018-"+addZero(mese)+"-"+addZero(i+1),
+      nomeGiorno:moment("2018-"+addZero(mese)+"-"+addZero(i+1)).format("dddd"),
     };
     var html = template(context);
     $(".wrap").append(html);
