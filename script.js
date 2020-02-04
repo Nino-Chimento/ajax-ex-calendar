@@ -1,5 +1,15 @@
 $(document).ready(function () {
-  var start = moment(2018-01-01);
+  festivita = [
+    {
+      name : " Mio Compleanno",
+      date : "2018-11-05"
+    },
+    {
+      name:" Festa a caso",
+      date : "2018-01-10"
+    }
+  ]
+  console.log(festivita.length);
   var mese = 1;
   giorniDelMese(mese)
   $(".successivo").click(function () {
@@ -48,6 +58,22 @@ function feste(mese) {
           };
         })
       }
+      for (var i = 0; i < festivita.length; i++) {
+        $(".wrap div").each(function () {
+          if ($(this).attr("data") ==   festivita[i].date) {
+              $(this).addClass("red");
+              var source = $("#entry-template").html();
+              var template = Handlebars.compile(source);
+              var context = {
+                name : festivita[i].name,
+              }
+              var html = template(context);
+              $(this).append(html)
+
+          }
+        });
+
+      }
     },
     erorr : function (richiesta,stato,errore) {
       alert("errore"+errore)
@@ -58,7 +84,6 @@ function feste(mese) {
 function giorniDelMese(mese) {
   var giorniMese = moment(2018-0+mese).daysInMonth();
   for (var i = 0; i < giorniMese; i++) {
-    console.log(moment().date.weekdays);
     var source = $("#entry-template").html();
     var template = Handlebars.compile(source);
     var context = {
