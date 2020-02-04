@@ -61,13 +61,13 @@ function feste(mese) {
 function giorniDelMese(mese) {
   var giorniMese = moment(2018-0+mese).daysInMonth();
   for (var i = 0; i < giorniMese; i++) {
-    console.log(moment().day(i));
     var source = $("#entry-template").html();
     var template = Handlebars.compile(source);
     var context = {
       giorno: addZero(i+1),
       mese: moment().month(mese-1).format("MMMM"),
       data : "2018-"+addZero(mese)+"-"+addZero(i+1),
+      nomeGiorno:moment("2018-"+addZero(mese)+"-"+addZero(i+1)).format("dddd"),
     };
     var html = template(context);
     $(".wrap").append(html);
